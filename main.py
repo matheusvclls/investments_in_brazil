@@ -19,25 +19,39 @@ import math
 # mensal , trimestral ou anual .
 # @return juros obtidos no per í odo : (1 + r/n) nt − 1
 #
+
+TAXA_SELIC_ANUAL = 0.1325
+TAXA_CDI_ANUAL = 0.1315
+
 def jc ( r : float , t : int , n : int = 1) -> float :
     return (1 + r / float ( n ))**( n * t ) - 1
 
-# # Converte uma taxa di á ria para uma taxa anual .
-# Em matem á tica financeira , consideramos 252 dias por ano .
-#
-# @param d taxa de juros di á ria .
-# @param wd n ú mero de dias ú teis por ano .
-# @return taxa de juros anual dada a taxa di á ria ,
-# na forma de um percentual .
+
 def day2year ( d : float , wd : int = 252) -> float :
+    '''
+    Função responsável por converter a taxa de juros diária para anual.
+    Como o valor de dias úteis é opcional, o default é 252
+
+    Args:
+        d (float): taxa de juros diária
+        wd (int, optional): números de dias úteis no ano
+    
+    Returns:
+        float: taxa de juros anual
+    '''
     return 100 * jc (d , wd )
 
-# # Converte uma taxa de juros anual para uma taxa mensal .
-#
-# @param a taxa de juros anual .
-# @return taxa de juros mensal dada a taxa anual ,
-# na forma de um percentual .
+
 def year2month ( a : float ) -> float :
+    '''
+    Função responsável por converter a taxa de juros anual para mensal
+
+    Args:
+        a (float): taxa de juros anual
+    
+    Returns:
+        float: taxa de juros mensal
+    '''
     return 100 * jc (a , 1 / 12.0)
 
 # # Calcula o logaritmo de 2 na base 1 + r.
