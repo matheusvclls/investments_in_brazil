@@ -1,3 +1,5 @@
+import math
+
 # # Juros compostos .
 #
 # É a adi ç ã o de juros ao capital principal de um empr é stimo ou dep ó sito ,
@@ -37,6 +39,7 @@ def day2year ( d : float , wd : int = 252) -> float :
 # na forma de um percentual .
 def year2month ( a : float ) -> float :
     return 100 * jc (a , 1 / 12.0)
+
 # # Calcula o logaritmo de 2 na base 1 + r.
 # Pode ser aproximado por 72/(100 ∗ r).
 #
@@ -47,7 +50,8 @@ def year2month ( a : float ) -> float :
 # @return tempo para dobrar o principal .
 #
 def doublePrincipal ( r : float ) -> float :
-    return math * log (2 , 1 + r )
+    # apenas checar se podemos utilizar a taxa nominal ou não
+    return math.log(2,10)/math.log(1+r,10)
 #... Inclua suas fun ç õ es aqui ...
 
 # # Calcula o montante final , imposto , rendimento e
@@ -71,3 +75,6 @@ def doublePrincipal ( r : float ) -> float :
 def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int = 1) -> float :
     return None
 #... Essa deve ser implementada por voc ê ... 
+
+print(math.log(2,10)/math.log(1+0.14,10))
+
