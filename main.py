@@ -6,6 +6,11 @@ def usage():
     print('Usage: ./'+sys.argv[0]+' -c [ capital ] -a [ CDI anual ] -s [ Selic ]-i [ al í quota IR ] -t [ taxa CDI ] -m [ meses ] -h [ help ]')
 
 def get_params():
+    # ideia pra implementacao... colocar função que checa o número de argumentos passados
+    # caso seja menor do que o mínimo travar o código
+
+    # help já implementado
+
     capital = None
     taxa_imposto = None
     percentual_do_cdi = None
