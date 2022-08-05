@@ -1,8 +1,10 @@
 import math
 import sys
 import getopt
-  
-  
+
+def usage():
+    print('Usage: ./'+sys.argv[0]+' -c [ capital ] -a [ CDI anual ] -s [ Selic ]-i [ al í quota IR ] -t [ taxa CDI ] -m [ meses ] -h [ help ]')
+
 def get_params():
     capital = None
     taxa_imposto = None
@@ -11,13 +13,26 @@ def get_params():
     taxa_selic = None
   
     argv = sys.argv[1:]
-  
+
+    # Checa o comando de ajuda
+    try:
+        for opt, arg in opts:
+            if opt in ('-h', '--help'):
+                usage()
+                sys.exit(2)
+    except:
+        pass
+
+    # Checa se os parametros foram passados
     try:
         opts, args = getopt.getopt(argv, "c:i:t:a:s:")
-      
+        if not opts:
+            print('No options supplied')
+            usage()
     except:
-        print("Error")
-  
+        usage()
+        sys.exit(2)
+
     for opt, arg in opts:
         if opt in ['-c']:
             capital = arg
@@ -30,6 +45,7 @@ def get_params():
         elif opt in ['-s']:
             taxa_selic = arg  
 
+
     print(capital)
     print(taxa_imposto)
     print(percentual_do_cdi)
@@ -37,6 +53,10 @@ def get_params():
     print(taxa_selic)
   
 get_params()    
+
+def help():
+    print('Usage ./ cdi . py -c [ capital ] -a [ CDI anual ] -s [ Selic ]')
+    print('-i [ al í quota IR ] -t [ taxa CDI ] -m [ meses ] -h [ help ]')
 
 TAXA_SELIC_ANUAL = 0.1325
 TAXA_CDI_ANUAL = 0.1315
