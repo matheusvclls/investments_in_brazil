@@ -1,4 +1,42 @@
 import math
+import sys
+import getopt
+  
+  
+def get_params():
+    capital = None
+    taxa_imposto = None
+    percentual_do_cdi = None
+    taxa_cdi = None
+    taxa_selic = None
+  
+    argv = sys.argv[1:]
+  
+    try:
+        opts, args = getopt.getopt(argv, "c:i:t:a:s:")
+      
+    except:
+        print("Error")
+  
+    for opt, arg in opts:
+        if opt in ['-c']:
+            capital = arg
+        elif opt in ['-i']:
+            taxa_imposto = arg
+        elif opt in ['-t']:
+            percentual_do_cdi = arg        
+        elif opt in ['-a']:
+            taxa_cdi = arg      
+        elif opt in ['-s']:
+            taxa_selic = arg  
+
+    print(capital)
+    print(taxa_imposto)
+    print(percentual_do_cdi)
+    print(taxa_cdi)
+    print(taxa_selic)
+  
+get_params()    
 
 TAXA_SELIC_ANUAL = 0.1325
 TAXA_CDI_ANUAL = 0.1315
@@ -165,4 +203,4 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
     print("Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses))
     return None
 
-CDB(1000, 0.1315, 0.1325, 93, 22.5)
+#CDB(1000, 0.1315, 0.1325, 93, 22.5)
