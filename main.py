@@ -24,6 +24,17 @@ TAXA_SELIC_ANUAL = 0.1325
 TAXA_CDI_ANUAL = 0.1315
 
 def jc ( r : float , t : int , n : int = 1) -> float :
+    '''
+    Função responsável por calcular os juros compostos sobre o capital
+
+    Args:
+        r (float): taxa de juros nominal
+        t (int): período total no qual os juros são aplicados
+        n (int): frequência em que os juros incorrem sobre o capital. Por exemplo: anual, trimestral ou semestral.
+
+    Returns:
+        float: total de juros obtidos no período
+    '''
     return (1 + r / float ( n ))**( n * t ) - 1
 
 
@@ -37,7 +48,7 @@ def day2year ( d : float , wd : int = 252) -> float :
         wd (int, optional): números de dias úteis no ano
     
     Returns:
-        float: taxa de juros anual
+        float: taxa de juros anual (em formato de percentual)
     '''
     return 100 * jc (d , wd )
 
@@ -50,7 +61,7 @@ def year2month ( a : float ) -> float :
         a (float): taxa de juros anual
     
     Returns:
-        float: taxa de juros mensal
+        float: taxa de juros mensal (em formato de percentual)
     '''
     return 100 * jc (a , 1 / 12.0)
 
@@ -90,5 +101,9 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
     return None
 #... Essa deve ser implementada por voc ê ... 
 
-print(math.log(2,10)/math.log(1+0.14,10))
+print(jc(0.1,24,12))
+
+print(year2month ( 0.12 ))
+print(day2year ( 0.00049037 ))
+
 
