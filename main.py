@@ -101,19 +101,19 @@ def year2month ( a : float ) -> float :
     '''
     return 100 * jc (a , 1 / 12.0)
 
-# # Calcula o logaritmo de 2 na base 1 + r.
-# Pode ser aproximado por 72/(100 ∗ r).
-#
-# É usada para calcular o tempo necess á rio
-# para dobrar o principal quando sujeito uma taxa de juros dada .
-#
-# @param r taxa de juros nominal .
-# @return tempo para dobrar o principal .
-#
+
 def doublePrincipal ( r : float ) -> float :
-    # apenas checar se podemos utilizar a taxa nominal ou não
+    """
+    Função responsável pelo cálculo do tempo que o capital dobrará
+    com base na taxa de juros passada na variável "r"
+    
+    Args
+        r (float): taxa de juros nominal
+    
+    Returns
+        time_to_double_capital (float): tempo para dobrar o capital
+    """
     return math.log(2,10)/math.log(1+r,10)
-#... Inclua suas fun ç õ es aqui ...
 
 
 def calculo_rendimento_poupanca(taxa_selic : float) -> float:
