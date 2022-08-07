@@ -54,7 +54,7 @@ def get_args():
         usage()
         sys.exit()
 
-get_args()
+#get_args()
 
 TAXA_SELIC_ANUAL = 0.1325
 TAXA_CDI_ANUAL = 0.1315
@@ -162,7 +162,7 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
    
 
     taxa_cdi_mensal = round(year2month(cdi),4)
-    taxa_cdi_diaria = "ainda falta implementar"
+    taxa_cdi_diaria = "ainda falta implementar" #fix this part
     rendimento_poupanca_anual = calculo_rendimento_poupanca(p)
     rendimento_poupanca_mensal = round(year2month(rendimento_poupanca_anual),4)
     
@@ -191,10 +191,9 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
     print("\n")
     print("Meses = {}".format(m))
 
-    print("\n")
-    # utilizar a função jc ao invés do cálculo direto da incidência de juros!!!!!
-    montatnte_aplicacao = round((1 + rentabilidade_liquida_cdi_mensal)*c,2)
-    montante_poupanca = round(c*(1+(rendimento_poupanca_mensal/100)),2)
+    print("\n") 
+    montatnte_aplicacao = round((jc(rentabilidade_liquida_cdi_mensal,1,1))*c+c,2)
+    montante_poupanca = round((jc(rendimento_poupanca_mensal/100,1,1))*c+c,2)
     print("Montante Aplicação = ${}".format(montatnte_aplicacao))
     print("Montante Poupança = ${:.2f}".format( montante_poupanca))
     diferenca_aplicacoes = montatnte_aplicacao - montante_poupanca
@@ -221,4 +220,4 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
     print("Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses))
     return None
 
-#CDB(1000, 0.1315, 0.1325, 93, 22.5)
+CDB(1000, 0.1315, 0.1325, 93, 22.5)
