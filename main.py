@@ -53,11 +53,9 @@ def get_args():
         print("Falta de parâmetros obrigatórios. Gentileza seguir a instrução abaixo:")
         usage()
         sys.exit()
+    return capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic
 
-#get_args()
 
-TAXA_SELIC_ANUAL = 0.1325
-TAXA_CDI_ANUAL = 0.1315
 
 def jc ( r : float , t : int , n : int = 1) -> float :
     '''
@@ -220,4 +218,7 @@ def CDB ( c : float , cdi : float , p : float , t : float , i : float , m : int 
     print("Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses))
     return None
 
-CDB(1000, 0.1315, 0.1325, 93, 22.5)
+
+if __name__ == "__main__":
+    capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic = get_args()
+    CDB(capital, taxa_cdi, taxa_selic, percentual_do_cdi, taxa_imposto)
