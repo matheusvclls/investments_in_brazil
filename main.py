@@ -5,63 +5,56 @@ import getopt
 def usage():
     print('Usage: ./'+sys.argv[0]+' -c [ capital ] -a [ CDI anual ] -s [ Selic ]-i [ al í quota IR ] -t [ taxa CDI ] -m [ meses ] -h [ help ]')
 
-def get_params():
-    # ideia pra implementacao... colocar função que checa o número de argumentos passados
-    # caso seja menor do que o mínimo travar o código
-
-    # help já implementado
-
+def get_args():
+    
     capital = None
     taxa_imposto = None
     percentual_do_cdi = None
     taxa_cdi = None
     taxa_selic = None
-  
-    argv = sys.argv[1:]
 
-    # Checa o comando de ajuda
     try:
-        for opt, arg in opts:
-            if opt in ('-h', '--help'):
-                usage()
-                sys.exit(2)
-    except:
-        pass
+        opts, args = getopt.getopt(sys.argv[1:], "c:i:t:a:s:m:h", ["help","h"])
 
-    # Checa se os parametros foram passados
-    try:
-        opts, args = getopt.getopt(argv, "c:i:t:a:s:")
-        if not opts:
-            print('No options supplied')
+        # Instrução de erro sem parâmetros
+        if opts == []:
+            print("Sem parâmetros passados. Gentileza seguir a instrução abaixo:")
             usage()
-    except:
+            sys.exit()
+
+    except getopt.GetoptError as err:
+        # print help information and exit:
+        print(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
 
-    for opt, arg in opts:
-        if opt in ['-c']:
-            capital = arg
-        elif opt in ['-i']:
-            taxa_imposto = arg
-        elif opt in ['-t']:
-            percentual_do_cdi = arg        
-        elif opt in ['-a']:
-            taxa_cdi = arg      
-        elif opt in ['-s']:
-            taxa_selic = arg  
+    for o, a in opts:
+        if o in ('-h', '--help'):
+            usage()
+            sys.exit()
+        if o in ['-c']:
+            capital = a
+        elif o in ['-i']:
+            taxa_imposto = a
+        elif o in ['-t']:
+            percentual_do_cdi = a        
+        elif o in ['-a']:
+            taxa_cdi = a      
+        elif o in ['-s']:
+            taxa_selic = a  
 
+        else:
+            assert False, "unhandled option"
 
-    print(capital)
-    print(taxa_imposto)
-    print(percentual_do_cdi)
-    print(taxa_cdi)
-    print(taxa_selic)
-  
-get_params()    
+    # Checar se todos os argumentos obrigatórios foram passados
+    if capital != None and taxa_cdi != None and taxa_imposto != None and percentual_do_cdi != None and taxa_selic !=None:
+        pass
+    else:
+        print("Falta de parâmetros obrigatórios. Gentileza seguir a instrução abaixo:")
+        usage()
+        sys.exit()
 
-def help():
-    print('Usage ./ cdi . py -c [ capital ] -a [ CDI anual ] -s [ Selic ]')
-    print('-i [ al í quota IR ] -t [ taxa CDI ] -m [ meses ] -h [ help ]')
+get_args()
 
 TAXA_SELIC_ANUAL = 0.1325
 TAXA_CDI_ANUAL = 0.1315
