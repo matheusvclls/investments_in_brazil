@@ -33,15 +33,15 @@ def get_args():
             usage()
             sys.exit()
         if o in ['-c']:
-            capital = a
+            capital = float(a)
         elif o in ['-i']:
-            taxa_imposto = a
+            taxa_imposto = float(a)
         elif o in ['-t']:
-            percentual_do_cdi = a        
+            percentual_do_cdi = float(a)        
         elif o in ['-a']:
-            taxa_cdi = a      
+            taxa_cdi = float(a)      
         elif o in ['-s']:
-            taxa_selic = a  
+            taxa_selic = float(a)  
 
         else:
             assert False, "unhandled option"
