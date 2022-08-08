@@ -11,6 +11,19 @@ def usage():
 
 
 def get_args():
+    '''
+    Function responsible for get args passed by users
+
+    Args
+        None
+
+    Returns
+        capital (float): initial capital
+        taxa_cdi (float): cdi rate
+        taxa_imposto (float): tax rate
+        percentual_do_cdi (float): percent of total cdi rate
+        taxa_selic (float): selic rate
+    '''
 
     capital = None
     taxa_imposto = None
