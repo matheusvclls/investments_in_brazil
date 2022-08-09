@@ -23,6 +23,7 @@ def get_args():
         taxa_imposto (float): tax rate
         percentual_do_cdi (float): percent of total cdi rate
         taxa_selic (float): selic rate
+        meses (int): months to calc
     '''
 
     capital = None
@@ -30,6 +31,7 @@ def get_args():
     percentual_do_cdi = None
     taxa_cdi = None
     taxa_selic = None
+    month = 1
 
     try:
         opts, args = getopt.getopt(
@@ -61,7 +63,8 @@ def get_args():
             taxa_cdi = float(a)
         elif o in ['-s']:
             taxa_selic = float(a)
-
+        elif o in ['-m']:
+            month = int(a)
         else:
             assert False, "unhandled option"
 
@@ -72,7 +75,7 @@ def get_args():
         print("Falta de parâmetros obrigatórios. Gentileza seguir a instrução abaixo:")
         usage()
         sys.exit()
-    return capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic
+    return capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic, month
 
 
 def jc(r: float, t: int, n: int = 1) -> float:
