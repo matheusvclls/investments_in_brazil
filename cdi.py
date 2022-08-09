@@ -260,5 +260,5 @@ def CDB(c: float, cdi: float, p: float,
 
 
 if __name__ == "__main__":
-    capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic = get_args()
+    capital, taxa_cdi, taxa_imposto, percentual_do_cdi, taxa_selic, month = get_args()
     CDB(capital, taxa_cdi, taxa_selic, percentual_do_cdi, taxa_imposto)
