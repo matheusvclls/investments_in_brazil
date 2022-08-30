@@ -4,6 +4,9 @@ import getopt
 
 
 def usage():
+    '''
+    Function responsible for give instruction in case of error
+    '''
     print(
         'Usage: ./' +
         sys.argv[0] +
