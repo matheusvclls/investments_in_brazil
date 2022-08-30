@@ -179,7 +179,7 @@ def CDB(c: float, cdi: float, p: float,
     '''
 
     taxa_cdi_mensal = round(year2month(cdi), 4)
-    taxa_cdi_diaria = "ainda falta implementar"  # fix this part
+    taxa_cdi_diaria = round(day2year(cdi,1/252),6) 
     rendimento_poupanca_anual = calculo_rendimento_poupanca(p)
     rendimento_poupanca_mensal = round(
         year2month(rendimento_poupanca_anual), 4)
@@ -231,7 +231,7 @@ def CDB(c: float, cdi: float, p: float,
     montatnte_aplicacao_com_impostos = round(
         (1 + (rentabilidade_percentual_cdi_mensal / 100)) * c, 2)
     total_impostos = (montatnte_aplicacao_com_impostos - montatnte_aplicacao)
-    # ainda errada utilizar a função jc
+
     print("Imposto = ${:.4f}".format(total_impostos))
     print("Rendimento em {} meses = {:.4f}%".format(
         m, rentabilidade_liquida_cdi_mensal * 100))
