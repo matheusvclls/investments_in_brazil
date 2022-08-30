@@ -17,5 +17,8 @@ class TestCdi(unittest.TestCase):
         self.assertAlmostEqual(cdi.jc(0.1,1,1),0.1,2)
         self.assertAlmostEqual(cdi.jc(0.005,10,1),0.0511401,2)
 
+    def test_doublePrincipal(self):
+        self.assertAlmostEqual(cdi.doublePrincipal(0.007576),91.84,2)
+
 if __name__ == "__main__":
     unittest.main()
