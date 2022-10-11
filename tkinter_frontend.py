@@ -37,14 +37,12 @@ def call_function():
     frame1.pack(padx=20, pady=20,side=LEFT)    
     for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['first_block']:
         lab = Label(frame1, text=i,justify=LEFT, anchor='w',background='gainsboro')
-        border_color.pack()
         lab.pack(padx=5, pady=5)
 
     frame2  = Frame(root, highlightbackground="blue", highlightthickness=4,background='gainsboro')
     frame2.pack(padx=20, pady=20,side=RIGHT)    
     for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['second_block']:
         lab = Label(frame2, text=i,background='gainsboro')
-        border_color.pack()
         lab.pack(padx=5, pady=5)
 
     frame3  = Frame(root, highlightbackground="red", highlightthickness=4,background='gainsboro')
@@ -60,32 +58,34 @@ if __name__ == '__main__':
     root = Tk()
     
     # Title
-    framedisp = Frame(root)
-    border_color = Frame(framedisp, background="aquamarine")
-    lab = Label(border_color, text="CDBs, LCIs e LCAs indexadas por \nCertificados de Depósitos Interbancários", anchor='w', font='Helvetica 11 bold')
-    lab.configure(background='red')
-    border_color.pack(padx=40, pady=20)
-    lab.pack(padx=5, pady=5,side = TOP)
+    general_frame = Frame(root,highlightbackground='SkyBlue', highlightthickness=4)
+
+    framedisp = Frame(root,highlightbackground='SkyBlue', highlightthickness=4)
+    lab = Label(framedisp,text="CDBs, LCIs e LCAs indexadas por \nCertificados de Depósitos Interbancários", anchor='w', font='Helvetica 11 bold')
+    lab.configure(background='#EF6945')
+    lab.pack(side = TOP)
     framedisp.pack(side=TOP)
 
 
     # Capital
     framedisp = Frame(root)
     framedisp.configure(height=20, width=20)    
-    w = Label(framedisp, width=22,text ='Capital', anchor='w') 
+    w = Label(framedisp, width=22,text ='Capital: $', anchor='w') 
     w.pack(side = LEFT)
     capital = Spinbox(framedisp, from_= 0, increment=0.01)
-    capital.pack(side = RIGHT, expand = YES, fill = X)
-    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    capital.pack(side = RIGHT, expand = YES)
+    framedisp.pack(side=TOP,  anchor="w", padx = 5 , pady = 5)
     
     # Taxa Selic
     framedisp = Frame(root)
     framedisp.configure(height=20, width=20)    
     w = Label(framedisp, width=22,text ='Taxa Selic', anchor='w') 
     w.pack(side = LEFT)
-    tx_selic = Spinbox(framedisp, from_= 0, increment=0.01)
-    tx_selic.pack(side = RIGHT, expand = YES, fill = X)
-    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    tx_selic = Spinbox(framedisp, from_= 0, to=1000,increment=0.01)
+    tx_selic.pack(side = LEFT)
+    text_percent = Label(framedisp, width=22,text =f'% ano', anchor='w') 
+    text_percent.pack(side=RIGHT)
+    framedisp.pack(side=TOP,  anchor="w", padx = 5 , pady = 5)
     
     # Taxa CDI
     framedisp = Frame(root)
@@ -93,8 +93,10 @@ if __name__ == '__main__':
     w = Label(framedisp, width=22,text ='Taxa CDI', anchor='w') 
     w.pack(side = LEFT)
     tx_cdi = Spinbox(framedisp, from_= 0,  increment=0.01)
-    tx_cdi.pack(side = RIGHT, expand = YES, fill = X)
-    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    tx_cdi.pack(side = LEFT)
+    text_percent = Label(framedisp, width=22,text =f'% ano', anchor='w') 
+    text_percent.pack(side=RIGHT)
+    framedisp.pack(side=TOP,  anchor="w", padx = 5 , pady = 5)
     
     # Rentabilidade
     framedisp = Frame(root)
@@ -102,7 +104,9 @@ if __name__ == '__main__':
     w = Label(framedisp, width=22,text ='Rentabilidade', anchor='w') 
     w.pack(side = LEFT)
     rentabilidade = Spinbox(framedisp, from_= 0,  increment=0.01)
-    rentabilidade.pack(side = RIGHT, expand = YES, fill = X)
+    rentabilidade.pack(side = LEFT, expand = YES, fill = X)
+    text_percent = Label(framedisp, width=22,text =f'% CDI', anchor='w') 
+    text_percent.pack(side=RIGHT)
     framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
     
     # Meses
@@ -111,7 +115,7 @@ if __name__ == '__main__':
     w = Label(framedisp, width=22,text ='Meses', anchor='w') 
     w.pack(side = LEFT)
     meses = Spinbox(framedisp, from_= 0)
-    meses.pack(side = RIGHT, expand = YES, fill = X)
+    meses.pack(side = LEFT)
     framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
     
     # Alíquota IR text
@@ -146,7 +150,15 @@ if __name__ == '__main__':
     b1 = Button(root, text = 'Calcular', command=call_function)
     b1.pack(side = TOP, padx = 5, pady = 5)
 
+    # Arraste-me para reposicionar a tela
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)
+    lab = Label(framedisp)
+    lab.configure(text=("(arraste-me para reposicionar a janela)"))
+    lab.pack(side = TOP)
+    framedisp.pack(side=TOP,  anchor="w")
 
+    general_frame.pack()
     root.mainloop()
 
 
