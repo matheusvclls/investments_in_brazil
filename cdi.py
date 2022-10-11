@@ -267,6 +267,8 @@ def CDB(c: float, cdi: float, p: float,
         rendimento_poupanca_mensal / 100)
     p16="Tempo 2x Poupança = {:.2f} anos = {:.2f} meses".format(
         tempo_dobrar_poupanca_anos, tempo_dobrar_poupanca_meses)
+    p18 = "Tempo 2x Poupança = {:.2f} anos".format(
+        tempo_dobrar_poupanca_anos)
     print(p16)
 
     tempo_dobrar_aplicacao_anos = doublePrincipal(
@@ -275,8 +277,10 @@ def CDB(c: float, cdi: float, p: float,
         rentabilidade_liquida_cdi_mensal)
     p17="Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(
         tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses)
+    p19 = "Tempo 2x Aplicação = {:.2f} anos".format(
+        tempo_dobrar_aplicacao_anos)
     print(p17)
-    return {'first_block':[p1,p2,p3,p4,p5,p6,p7,p8], 'second_block':[p9,p10,p11,p12,p13],'third_block':[p14,p15,p16,p17]}
+    return {'first_block':[p1,p2,p3,p4,p5,p6,p7,p8], 'second_block':[p9,p10,p11,p12,p13],'third_block':[p14,p15,p18,p19]}
 
 
 if __name__ == "__main__":
