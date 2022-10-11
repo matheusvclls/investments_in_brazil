@@ -1,3 +1,4 @@
+from distutils.command.config import config
 from tkinter import *
 import tkinter.ttk as ttk
 from turtle import left
@@ -20,8 +21,8 @@ def get_aliquota_ir():
 
 def call_function():
     capital_value = float(capital.get())
-    tx_selic_value = float(tx_selic.get())
-    tx_cdi_value = float(tx_cdi.get())
+    tx_selic_value = float(tx_selic.get())*0.01
+    tx_cdi_value = float(tx_cdi.get())*0.01
     rentabilidade_value = float(rentabilidade.get())
     meses_value = float(meses.get())
     aliquota_ir_value = get_aliquota_ir()
@@ -29,22 +30,33 @@ def call_function():
     #CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)
 
     root = Tk()
+
     framedisp = Frame(root)
-    border_color = Frame(framedisp, background="aquamarine")
-    lab = Label(border_color, text=CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value), anchor='w', font='Helvetica 11 bold')
-    lab.configure(background='red')
-    border_color.pack(padx=40, pady=20)
-    lab.pack(padx=5, pady=5,side = TOP)
-    framedisp.pack(side=TOP)
+
+    frame1  = Frame(root, highlightbackground="green", highlightthickness=4,background='gainsboro')
+    frame1.pack(padx=20, pady=20,side=LEFT)    
+    for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['first_block']:
+        lab = Label(frame1, text=i,justify=LEFT, anchor='w',background='gainsboro')
+        border_color.pack()
+        lab.pack(padx=5, pady=5)
+
+    frame2  = Frame(root, highlightbackground="blue", highlightthickness=4,background='gainsboro')
+    frame2.pack(padx=20, pady=20,side=RIGHT)    
+    for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['second_block']:
+        lab = Label(frame2, text=i,background='gainsboro')
+        border_color.pack()
+        lab.pack(padx=5, pady=5)
+
+    frame3  = Frame(root, highlightbackground="red", highlightthickness=4,background='gainsboro')
+    frame3.pack(padx=20, pady=20,side=LEFT)    
+    for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['third_block']:
+        lab = Label(frame3, text=i, anchor='w',background='gainsboro')
+        lab.pack(padx=5, pady=5)
+
+    framedisp.pack()
 
 
 if __name__ == '__main__':
-    capital = ''
-    tx_cdi = ''
-    tx_selic=''
-    rentabilidade=''
-    meses=''
-    radio=''
     root = Tk()
     
     # Title
