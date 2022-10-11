@@ -19,7 +19,7 @@ def get_aliquota_ir():
         aliquota_ir=22.5
     return aliquota_ir
 
-def call_function():
+def second_function():
     capital_value = float(capital.get())
     tx_selic_value = float(tx_selic.get())*0.01
     tx_cdi_value = float(tx_cdi.get())*0.01
@@ -27,22 +27,23 @@ def call_function():
     meses_value = int(meses.get())
     aliquota_ir_value = get_aliquota_ir()
 
-    #CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)
-
     root = Tk()
 
+    # Green box
     frame1  = Frame(root, highlightbackground="green", highlightthickness=4,background='gainsboro')
     frame1.pack(padx=20, pady=20,side=LEFT)    
     for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['first_block']:
         lab = Label(frame1, text=i,justify=LEFT, anchor='w',background='gainsboro')
         lab.pack(padx=5, pady=5)
 
+    # Blue box
     frame2  = Frame(root, highlightbackground="blue", highlightthickness=4,background='gainsboro')
     frame2.pack(padx=20, pady=20,side=RIGHT)    
     for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['second_block']:
         lab = Label(frame2, text=i,background='gainsboro')
         lab.pack(padx=5, pady=5)
 
+    # Red box
     frame3  = Frame(root, highlightbackground="red", highlightthickness=4,background='gainsboro')
     frame3.pack(padx=20, pady=20,side=BOTTOM)    
     for i in CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)['third_block']:
@@ -67,6 +68,7 @@ if __name__ == '__main__':
 
     general_frame = Frame(general_frame_0,highlightbackground='SkyBlue', highlightthickness=4,background='#F9EBB9')
     general_frame.pack(padx = 5 , pady = 5)
+
     # Capital
     framedisp = Frame(general_frame)
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
@@ -126,6 +128,7 @@ if __name__ == '__main__':
     lab.pack(side = LEFT)
     framedisp.pack(side=TOP,  anchor="w", padx = 5 , pady = 5)
 
+    # Choice rate box
     frame1 = Frame(general_frame)
     frame1.configure(height=200, width=200,background='#F9EBB9')
     radio = IntVar()
@@ -147,7 +150,7 @@ if __name__ == '__main__':
     frame1.pack(side="top",  anchor="w", padx = 5 , pady = 5)
     
     # "Calcular" button
-    b1 = Button(general_frame_0, text = 'Calcular', command=call_function,background='#F9EBB9', fg='red')
+    b1 = Button(general_frame_0, text = 'Calcular', command=second_function,background='#F9EBB9', fg='red')
     b1.pack(side = TOP, padx = 5, pady = 5)
 
     # Arraste-me para reposicionar a tela
