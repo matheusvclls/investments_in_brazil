@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from turtle import left
-fields = ('Capital', 'Taxa Selic', 'Taxa CDI', 'Rentabilidade', 'Meses')
+
 def monthly_payment(entries):
    # period rate:
    #r = (float(entries['Annual Rate'].get()) / 100) / 12
@@ -35,40 +35,74 @@ def final_balance(entries):
    #print("Remaining Loan: %f" % float(remaining))
     return None
 
-def makeform(root, fields):
-    entries = {}
-    for field in fields:
-        row = Frame(root)
-        lab = Label(row, width=22, text=field+": ", anchor='w')
-        ent = Entry(row)
-        ent.insert(0,"0")
-        row.pack(side = TOP, fill = X, padx = 5 , pady = 5)
-        lab.pack(side = LEFT)
-        ent.pack(side = RIGHT, expand = YES, fill = X)
-        entries[field] = ent
-    return entries
 
 def selection():
    selected = "You have selected " + str(radio.get())
-   label.config(text=selected)
+   print(selected)
 
 if __name__ == '__main__':
+
     root = Tk()
+    
+    # Title
     lab = Label(text="CDBs, LCIs e LCAs indexadas por \nCertificados de Depósitos Interbancários", anchor='w')
     lab.pack(side = TOP)
-    ents = makeform(root, fields)
-    root.bind('<Return>', (lambda event, e = ents: fetch(e)))
 
+    # Capital
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)    
+    w = Label(framedisp, width=22,text ='Capital', anchor='w') 
+    w.pack(side = LEFT)
+    sp = Spinbox(framedisp, from_= 0, to = 20)
+    sp.pack(side = RIGHT, expand = YES, fill = X)
+    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    
+    # Taxa Selic
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)    
+    w = Label(framedisp, width=22,text ='Taxa Selic', anchor='w') 
+    w.pack(side = LEFT)
+    sp = Spinbox(framedisp, from_= 0, to = 20)
+    sp.pack(side = RIGHT, expand = YES, fill = X)
+    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    
+    # Taxa CDI
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)    
+    w = Label(framedisp, width=22,text ='Taxa CDI', anchor='w') 
+    w.pack(side = LEFT)
+    sp = Spinbox(framedisp, from_= 0, to = 20)
+    sp.pack(side = RIGHT, expand = YES, fill = X)
+    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    
+    # Rentabilidade
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)    
+    w = Label(framedisp, width=22,text ='Capital', anchor='w') 
+    w.pack(side = LEFT)
+    sp = Spinbox(framedisp, from_= 0, to = 20)
+    sp.pack(side = RIGHT, expand = YES, fill = X)
+    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    
+    # Meses
+    framedisp = Frame(root)
+    framedisp.configure(height=20, width=20)    
+    w = Label(framedisp, width=22,text ='Meses', anchor='w') 
+    w.pack(side = LEFT)
+    sp = Spinbox(framedisp, from_= 0, to = 20)
+    sp.pack(side = RIGHT, expand = YES, fill = X)
+    framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
+    
+    # Alíquota IR text
     framedisp = Frame(root)
     framedisp.configure(height=20, width=20)
     lab = Label(framedisp)
     lab.configure(text=("Alíquota IR"))
     lab.pack(side = LEFT)
     framedisp.pack(side=TOP,  anchor="w")
-    
+
     frame1 = Frame(None)
     frame1.configure(height=200, width=200)
-    
     radio = IntVar()
     radiobutton11 = Radiobutton(frame1)
     radiobutton11.configure(text=("0.0 (LCA ou LCI)"), variable=radio, value=0, command=selection)
@@ -86,8 +120,9 @@ if __name__ == '__main__':
     radiobutton15.configure(text=("22.5 (até 180 dias)"), variable=radio, value=4, command=selection)
     radiobutton15.pack(side="top",  anchor="w")
     frame1.pack(side="top",  anchor="w")
-    b1 = Button(root, text = 'Calcular',
-        command=(lambda e = ents: final_balance(e)))
+    
+    # "Calcular" button
+    b1 = Button(root, text = 'Calcular')
     b1.pack(side = TOP, padx = 5, pady = 5)
 
 
