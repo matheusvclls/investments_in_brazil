@@ -1,8 +1,4 @@
-from distutils.command.config import config
 from tkinter import *
-import tkinter.ttk as ttk
-from turtle import left
-import tkinter.font as font
 from cdi import CDB
 
 def get_aliquota_ir():
@@ -56,7 +52,6 @@ if __name__ == '__main__':
     root = Tk()
     
     # Title
-
     framedisp = Frame(root,highlightbackground='SkyBlue', highlightthickness=4)
     lab = Label(framedisp,text="CDBs, LCIs e LCAs indexadas por \nCertificados de Depósitos Interbancários", anchor='w', font='Helvetica 11 bold')
     lab.configure(background='#EF6945')
@@ -74,7 +69,7 @@ if __name__ == '__main__':
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
     w = Label(framedisp, width=22,text ='Capital: $', anchor='w',background='#F9EBB9') 
     w.pack(side = LEFT)
-    capital = Spinbox(framedisp, from_= 0, increment=0.01)
+    capital = Spinbox(framedisp, to=999999999999999999999999999999999, from_= 0, increment=0.01)
     capital.pack(side = RIGHT, expand = YES)
     framedisp.pack(side=TOP,  anchor="w", padx = 5 , pady = 5)
     
@@ -83,7 +78,7 @@ if __name__ == '__main__':
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
     w = Label(framedisp, width=22,text ='Taxa Selic', anchor='w',background='#F9EBB9') 
     w.pack(side = LEFT)
-    tx_selic = Spinbox(framedisp, from_= 0, to=1000,increment=0.01)
+    tx_selic = Spinbox(framedisp, from_= 0, to=999999999999999999999999999999999,increment=0.01)
     tx_selic.pack(side = LEFT)
     text_percent = Label(framedisp, width=22,text =f'% ano', anchor='w',background='#F9EBB9') 
     text_percent.pack(side=RIGHT)
@@ -94,7 +89,7 @@ if __name__ == '__main__':
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
     w = Label(framedisp, width=22,text ='Taxa CDI', anchor='w',background='#F9EBB9') 
     w.pack(side = LEFT)
-    tx_cdi = Spinbox(framedisp, from_= 0,  increment=0.01)
+    tx_cdi = Spinbox(framedisp, from_= 0, to=999999999999999999999999999999999,  increment=0.01)
     tx_cdi.pack(side = LEFT)
     text_percent = Label(framedisp, width=22,text =f'% ano', anchor='w',background='#F9EBB9') 
     text_percent.pack(side=RIGHT)
@@ -105,7 +100,7 @@ if __name__ == '__main__':
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
     w = Label(framedisp, width=22,text ='Rentabilidade', anchor='w',background='#F9EBB9') 
     w.pack(side = LEFT)
-    rentabilidade = Spinbox(framedisp, from_= 0,  increment=0.01)
+    rentabilidade = Spinbox(framedisp, from_= 0, to=999999999999999999999999999999999,  increment=0.01)
     rentabilidade.pack(side = LEFT, expand = YES, fill = X)
     text_percent = Label(framedisp, width=22,text =f'% CDI', anchor='w',background='#F9EBB9') 
     text_percent.pack(side=RIGHT)
@@ -116,7 +111,7 @@ if __name__ == '__main__':
     framedisp.configure(height=20, width=20,background='#F9EBB9')    
     w = Label(framedisp, width=22,text ='Meses', anchor='w',background='#F9EBB9') 
     w.pack(side = LEFT)
-    meses = Spinbox(framedisp, from_= 0)
+    meses = Spinbox(framedisp, from_= 0, to=999999999999999999999999999999999)
     meses.pack(side = LEFT)
     framedisp.pack(side=TOP,  anchor="w",fill = X, padx = 5 , pady = 5)
     
