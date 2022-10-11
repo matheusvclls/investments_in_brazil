@@ -24,7 +24,7 @@ def call_function():
     tx_selic_value = float(tx_selic.get())*0.01
     tx_cdi_value = float(tx_cdi.get())*0.01
     rentabilidade_value = float(rentabilidade.get())
-    meses_value = float(meses.get())
+    meses_value = int(meses.get())
     aliquota_ir_value = get_aliquota_ir()
 
     #CDB(capital_value, tx_cdi_value,tx_selic_value,rentabilidade_value,aliquota_ir_value,meses_value)
