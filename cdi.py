@@ -188,18 +188,23 @@ def CDB(c: float, cdi: float, p: float,
         year2month(rendimento_poupanca_anual), 4)
 
     print("\n")
-    print("Capital = ${:.2f}".format(c))
+    p1= "Capital = ${:.2f}".format(c)
+    print(p1)
 
-    print("Taxa SELIC = {}%".format(p * 100))
+    p2 = "Taxa SELIC = {}%".format(p * 100)
+    print(p2)
 
-    print("Taxa CDI = {}% ao ano = {}% ao mês = {}% ao dia".format(
-        cdi * 100, taxa_cdi_mensal, taxa_cdi_diaria))
+    p3 ="Taxa CDI = {}% ao ano = {}% ao mês = {}% ao dia".format(
+        cdi * 100, taxa_cdi_mensal, taxa_cdi_diaria)
+    print(p3)
 
-    print("Taxa Poup = {}% ao ano = {:.4f}% ao mês".format(
-        rendimento_poupanca_anual * 100, rendimento_poupanca_mensal))
+    p4="Taxa Poup = {}% ao ano = {:.4f}% ao mês".format(
+        rendimento_poupanca_anual * 100, rendimento_poupanca_mensal)
+    print(p4)
 
     print("\n")
-    print("IR = {}%".format(i))
+    p5 = "IR = {}%".format(i)
+    print(p5)
     print("\n")
 
     rentabilidade_percentual_cdi = round(t * cdi, 2)
@@ -209,25 +214,31 @@ def CDB(c: float, cdi: float, p: float,
     rentabilidade_liquida_cdi_mensal = year2month(
         rentabilidade_liquida_percentual_cdi / 100) / 100
 
-    print("Rentabilidade = {:.1f}% CDI = {}%".format(
-        t, rentabilidade_percentual_cdi))
-    print(
-        "Com impostos = {}% CDI = {}%".format(
+    p6="Rentabilidade = {:.1f}% CDI = {}%".format(
+        t, rentabilidade_percentual_cdi)
+    print(p6)
+
+    p7="Com impostos = {}% CDI = {}%".format(
             rentabilidade_liquida_cdi,
-            rentabilidade_liquida_percentual_cdi))
+            rentabilidade_liquida_percentual_cdi)
+    print(p7)
 
     print("\n")
-    print("Meses = {}".format(m))
+    p8="Meses = {}".format(m)
+    print(p8)
 
     print("\n")
     montatnte_aplicacao = round(
         (jc(rentabilidade_liquida_cdi_mensal, 1, 1)) * c + c, 2)
     montante_poupanca = round(
         (jc(rendimento_poupanca_mensal / 100, 1, 1)) * c + c, 2)
-    print("Montante Aplicação = ${}".format(montatnte_aplicacao))
-    print("Montante Poupança = ${:.2f}".format(montante_poupanca))
+    p9="Montante Aplicação = ${}".format(montatnte_aplicacao)
+    print(p9)
+    p10="Montante Poupança = ${:.2f}".format(montante_poupanca)
+    print(p10)
     diferenca_aplicacoes = montatnte_aplicacao - montante_poupanca
-    print("Ap1 - Poup ({} meses) = ${:.2f}".format(m, diferenca_aplicacoes))
+    p11="Ap1 - Poup ({} meses) = ${:.2f}".format(m, diferenca_aplicacoes)
+    print(p11)
 
     rentabilidade_percentual_cdi_mensal = year2month(
         rentabilidade_percentual_cdi / 100)
@@ -235,31 +246,37 @@ def CDB(c: float, cdi: float, p: float,
         (1 + (rentabilidade_percentual_cdi_mensal / 100)) * c, 2)
     total_impostos = (montatnte_aplicacao_com_impostos - montatnte_aplicacao)
 
-    print("Imposto = ${:.4f}".format(total_impostos))
-    print("Rendimento em {} meses = {:.4f}%".format(
-        m, rentabilidade_liquida_cdi_mensal * 100))
+    p12="Imposto = ${:.4f}".format(total_impostos)
+    print(p12)
+    p13="Rendimento em {} meses = {:.4f}%".format(
+        m, rentabilidade_liquida_cdi_mensal * 100)
+    print(p13)
 
     print("\n")
     percentual_diferenca_aplicacoes = diferenca_aplicacoes / c * 100
-    print("Ap1 - Poup ({} meses) = {:.4f}%".format(m,
-          percentual_diferenca_aplicacoes))
+    p14="Ap1 - Poup ({} meses) = {:.4f}%".format(m,
+          percentual_diferenca_aplicacoes)
+    print(p14)
     taxa_do_cdi_igual_poupanca = rendimento_poupanca_mensal / \
         rentabilidade_liquida_cdi_mensal
-    print("Ap1 = Poup = {:.2f}% CDI".format(taxa_do_cdi_igual_poupanca))
+    p15="Ap1 = Poup = {:.2f}% CDI".format(taxa_do_cdi_igual_poupanca)
+    print(p15)
 
     tempo_dobrar_poupanca_anos = doublePrincipal(rendimento_poupanca_anual)
     tempo_dobrar_poupanca_meses = doublePrincipal(
         rendimento_poupanca_mensal / 100)
-    print("Tempo 2x Poupança = {:.2f} anos = {:.2f} meses".format(
-        tempo_dobrar_poupanca_anos, tempo_dobrar_poupanca_meses))
+    p16="Tempo 2x Poupança = {:.2f} anos = {:.2f} meses".format(
+        tempo_dobrar_poupanca_anos, tempo_dobrar_poupanca_meses)
+    print(p16)
 
     tempo_dobrar_aplicacao_anos = doublePrincipal(
         rentabilidade_liquida_percentual_cdi / 100)
     tempo_dobrar_aplicacao_meses = doublePrincipal(
         rentabilidade_liquida_cdi_mensal)
-    print("Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(
-        tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses))
-    return None
+    p17="Tempo 2x Aplicação = {:.2f} anos = {:.2f} meses".format(
+        tempo_dobrar_aplicacao_anos, tempo_dobrar_aplicacao_meses)
+    print(p17)
+    return {'first_block':[p1,p2,p3,p4,p5,p6,p7,p8], 'second_block':[p9,p10,p11,p12,p13],'third_block':[p14,p15,p16,p17]}
 
 
 if __name__ == "__main__":
